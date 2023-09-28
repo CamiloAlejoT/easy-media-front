@@ -1,5 +1,32 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
+  <section>
+    <label for="email"> {{authEnum.EMAIL}}</label>
+    <input type="email" id="email" formControlName="email">
+
+    <div>
+      <span *ngIf="loginForm.get('email')?.hasError('required')">{{authEnum.ERRORMAILREQUIRED}}</span>
+      <span *ngIf="loginForm.get('email')?.hasError('email')">{{authEnum.ERROREMAILFORMAT}}</span>
+    </div>
+  </section>
+<br>
+  <section>
+    <label for="password"> {{authEnum.PASSWORD}}</label>
+    <input type="password" id="password" formControlName="password">
+    <div>
+      <span *ngIf="loginForm.get('password')?.hasError('required')"> {{authEnum.ERRORPASSWORDREQUIRED}}</span>
+      <span *ngIf="loginForm.get('password')?.hasError('minlength')"> {{authEnum.ERRORPASSWORDLENGTH}}</span>
+    </div>
+  </section>
+
+  <button type="submit">
+    {{authEnum.SUBMIT}}
+  </button>
+</form>
+<br><br><br><br><br><br>
 <button (click)="navigateSignin()">
-    signin
+  {{authEnum.SIGNIN}}
 </button>
+<span *ngIf="loginError">
+  {{authEnum.ERROR}}
+</span>
