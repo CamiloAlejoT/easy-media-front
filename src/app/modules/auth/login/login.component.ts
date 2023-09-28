@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpService } from 'src/app/services/http.service';
-import { LoginPost, LoginResponse } from 'src/app/core/interfaces/http.interface';
 import { AUTH } from 'src/app/core/enum/auth.enum'
+import { AuthService } from 'src/app/services/auth.service';
+import { LoginPost } from 'src/app/core/interfaces/http.interface';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private httpService: HttpService
+    private authService: AuthService
   ) {
 
     this.loginForm = this.formBuilder.group({
@@ -38,17 +38,10 @@ export class LoginComponent {
 
   async onSubmit() {
     if (this.loginForm.valid) {
-      const postData: LoginPost = this.loginForm.value as LoginPost;
-      try {
-        const response: LoginResponse = await this.httpService.login(postData)
-        localStorage.setItem('userToken', response.access_token);
-        localStorage.setItem('startTokenTime', `${new Date().getTime()}`);
-
-      } catch (err) {
-        this.loginError = !this.loginError
-
-      }
-
+      if (await this.authService.login(this.loginForm.value as LoginPost))
+        this.navigateHome()
+      else
+        this.loginError = false
     }
   }
 

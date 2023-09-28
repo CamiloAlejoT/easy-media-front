@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControlOptions, FormGroup, Validators } from '@angular/forms';
 import { AUTH } from 'src/app/core/enum/auth.enum'
 import { passwordMatchValidator } from 'src/app/utilities/password.validator';
 import { SigninPost } from 'src/app/core/interfaces/http.interface';
-import { HttpService } from "src/app/services/http.service";
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-signin',
@@ -19,7 +20,8 @@ export class SigninComponent {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private httpService: HttpService
+    private authService: AuthService
+
   ) {
     this.signinForm = this.formBuilder.group(
       {
@@ -28,7 +30,7 @@ export class SigninComponent {
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required]],
       },
-      { validator: passwordMatchValidator }
+      { validator: passwordMatchValidator } as FormControlOptions
     )
   }
 
@@ -43,12 +45,10 @@ export class SigninComponent {
         name: this.signinForm.get('name')?.value,
         password: this.signinForm.get('password')?.value,
       }
-      try {
-        await this.httpService.sigin(postData)
+      if (await this.authService.signin(postData))
         this.navigateLogin()
-      } catch (err) {
-        console.log('error');
-      }
+      else
+        console.log("error");
     }
   }
 
