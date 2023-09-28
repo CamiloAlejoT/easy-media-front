@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service'
-import { LoginPost, LoginResponse, signinResponse, SigninPost } from 'src/app/core/interfaces/http.interface';
+import { LoginPost, LoginResponse, signinResponse, SigninPost, RenewPost } from 'src/app/core/interfaces/http.interface';
 
 
 @Injectable({
@@ -29,6 +29,8 @@ export class AuthService {
       const response: LoginResponse = await this.httpService.login(postData)
       localStorage.setItem('userToken', response.access_token)
       localStorage.setItem('startTokenTime', `${new Date().getTime()}`)
+      localStorage.setItem('uuid', response.uuid)
+      localStorage.setItem('email', response.email)
       this.isAuthenticated = true;
       return this.isAuthenticated
     } catch (err) {
@@ -43,5 +45,17 @@ export class AuthService {
     } catch (err) {
       return false
     }
+  }
+
+  async renewToken(email: string): Promise<LoginResponse | null> {
+    const postData: RenewPost = { email }
+    try {
+      const response: LoginResponse = await this.httpService.renewToken(postData)
+      localStorage.setItem('userToken', response.access_token)
+      return response
+    } catch (err) {
+      return null
+    }
+
   }
 }

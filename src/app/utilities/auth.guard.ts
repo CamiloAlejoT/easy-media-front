@@ -23,12 +23,13 @@ class PermissionsService {
     }
 
     canGoToAuthModule(): boolean {
+        debugger
         if (this.authService.checkAuth()) {
             this.router.navigate(['publications'])
             return false
         }
         else {
-            return this.authService.isAuthenticated
+            return !this.authService.isAuthenticated
         }
     }
 }

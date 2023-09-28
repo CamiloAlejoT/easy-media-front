@@ -23,3 +23,21 @@ export interface signinResponse {
     uuid: string
     isActive: boolean
 }
+
+export interface CreatePost {
+    title: string
+    message: string
+    author: string
+}
+
+export interface CreateResponse { 
+    title: string
+    message: string
+    author: string
+    creationDate: number
+    id: number
+}
+
+export interface RenewPost { 
+    email : string
+}

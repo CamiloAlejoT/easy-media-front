@@ -1,1 +1,31 @@
-<p>create-post works!</p>
+<app-app-header />
+
+<h1>
+    {{publicationsEnum.CREATE_TITLE}}
+</h1>
+
+<form [formGroup]="newPostForm" (ngSubmit)="onSubmit()">
+
+    <section>
+        <label for="title"> {{publicationsEnum.TITLE}}</label>
+        <input type="text" id="title" formControlName="title">
+
+        <div>
+            <span *ngIf="newPostForm.get('title')?.hasError('required')">{{publicationsEnum.ERROR_TITLE_REQUIRED}}</span>
+            <span *ngIf="newPostForm.get('title')?.hasError('maxlength')">{{publicationsEnum.ERROR_TITLE_MAX}}</span>
+        </div>
+    </section>
+    <br>
+    <section>
+        <label for="message"> {{publicationsEnum.MESSAGE}}</label>
+        <input type="text" id="message" formControlName="message">
+        <div>
+            <span *ngIf="newPostForm.get('message')?.hasError('required')"> {{publicationsEnum.ERROR_MESSAGE_REQUIRED}}</span>
+            <span *ngIf="newPostForm.get('password')?.hasError('maxlength')"> {{publicationsEnum.ERROR_MESSAGE_MAX}}</span>
+        </div>
+    </section>
+
+    <button type="submit">
+        {{publicationsEnum.SUBMIT}}
+    </button>
+</form>

@@ -7,4 +7,8 @@ export const AUTH_BASE = "auth"
 export const AUTH_LOGIN = "login"
 export const AUTH_SIGNIN = "signIn"
 export const AUTH_LOGOUT = "logout"
+export const AUTH_RENEW = "renew"
+
+export const PBL_BASE = "publications"
+export const PBL_CREATE = "create"
 
