@@ -1,2 +1,16 @@
-<app-app-header/>
-<p>my-posts works!</p>
+<app-app-header />
+<h1>
+    My Publications
+</h1>
+
+<label for="datepicker">Select a Date:</label>
+<input type="date" id="datepicker" name="datepicker" min="2023-01-01" max="2023-12-31" [(ngModel)]="selectedDate"
+    (ngModelChange)="getMyPost()">
+
+<button (click)="selectedDate = '';getMyPost()  ">reset</button>
+
+
+
+<div *ngFor="let item of myPublications" class="card">
+    <app-card-component [publication]="item"></app-card-component>
+</div>

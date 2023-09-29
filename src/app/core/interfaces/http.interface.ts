@@ -41,3 +41,17 @@ export interface CreateResponse {
 export interface RenewPost { 
     email : string
 }
+
+export interface FilterPubGet {
+    isActive ?: string
+    findUser ?: string
+    creationDate ?: string
+    title ?: string
+}
+
+export interface FilterPubResponse { 
+    name : string 
+    title : string 
+    creationDate : number 
+    message : string 
+}

@@ -7,6 +7,7 @@ import { AppHeaderComponent } from 'src/app/components/app-header/app-header.com
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { MyPostsComponent } from './my-posts/my-posts.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CardComponentComponent } from 'src/app/components/card-component/card-component.component';
 
 
 
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CreatePostComponent,
     AppHeaderComponent,
     AllPostsComponent,
-    MyPostsComponent
+    MyPostsComponent,
+    CardComponentComponent
   ],
   imports: [
     CommonModule,

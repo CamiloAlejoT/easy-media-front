@@ -7,7 +7,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { PublicationsModule } from './modules/publications/publications.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpInterceptorService } from 'src/app/services/http-interceptor.service'; // Import your interceptor
+import { HttpInterceptorService } from 'src/app/services/http-interceptor.service';
 
 
 
