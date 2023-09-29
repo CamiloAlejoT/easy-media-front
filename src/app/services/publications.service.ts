@@ -29,5 +29,10 @@ export class PublicationsService {
     return await firstValueFrom(this.http.get(url))
   }
 
+  async getPost(params: string): Promise<FilterPubResponse[]> {
+    let url = `${BASEURL}/${PBL_BASE}/${PBL_FILTER}?${params}`
+    return await firstValueFrom(this.http.get<FilterPubResponse[]>(url))
+  }
+
 
 }

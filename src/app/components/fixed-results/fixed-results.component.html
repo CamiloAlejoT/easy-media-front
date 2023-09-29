@@ -1,0 +1,14 @@
+
+<div *ngFor="let item of actuaPublications" class="card">
+    <app-card-component [publication]="item"></app-card-component>
+</div>
+
+<div>
+    <strong> <<  &emsp; </strong>
+    <span> <  &emsp;</span>
+    <span *ngFor="let page of pages; let i = index" (click)="goToPage(i)">
+        {{i+1}}
+    </span>
+    <span>  &emsp;> </span>
+    <strong>  &emsp;>> </strong>
+</div>

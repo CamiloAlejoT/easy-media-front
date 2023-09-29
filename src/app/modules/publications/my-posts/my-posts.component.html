@@ -3,14 +3,6 @@
     My Publications
 </h1>
 
-<label for="datepicker">Select a Date:</label>
-<input type="date" id="datepicker" name="datepicker" min="2023-01-01" max="2023-12-31" [(ngModel)]="selectedDate"
-    (ngModelChange)="getMyPost()">
+<app-filtet-form [formFields]="formFields" (dataEvent)="handleData($event)" />
+<app-fixed-results [myPublications]="myPublications" />
 
-<button (click)="selectedDate = '';getMyPost()  ">reset</button>
-
-
-
-<div *ngFor="let item of myPublications" class="card">
-    <app-card-component [publication]="item"></app-card-component>
-</div>

@@ -8,6 +8,9 @@ import { AllPostsComponent } from './all-posts/all-posts.component';
 import { MyPostsComponent } from './my-posts/my-posts.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponentComponent } from 'src/app/components/card-component/card-component.component';
+import { FiltetFormComponent } from 'src/app/components/filtet-form/filtet-form.component';
+import { FixedResultsComponent } from 'src/app/components/fixed-results/fixed-results.component'
+
 
 
 
@@ -17,7 +20,9 @@ import { CardComponentComponent } from 'src/app/components/card-component/card-c
     AppHeaderComponent,
     AllPostsComponent,
     MyPostsComponent,
-    CardComponentComponent
+    CardComponentComponent,
+    FiltetFormComponent,
+    FixedResultsComponent
   ],
   imports: [
     CommonModule,

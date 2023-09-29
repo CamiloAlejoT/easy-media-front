@@ -1,0 +1,16 @@
+<form [formGroup]="searchForm">
+    <div formArrayName="fieldItems">
+        <div *ngFor="let fieldItem of fieldItems.controls; let i = index" [formGroupName]="i">
+            <ng-container [ngSwitch]="fieldItem.get('type')?.value">
+                <div *ngSwitchCase="'date'">
+                    <label for="date">{{fieldItem.get('fieldLabel')?.value}}:</label>
+                    <input type="date" id="date" formControlName="value">
+                </div>
+                <div *ngSwitchCase="'text'">
+                    <label for="text">{{fieldItem.get('fieldLabel')?.value}}:</label>
+                    <input type="text" id="text" formControlName="value">
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</form>

@@ -23,7 +23,6 @@ class PermissionsService {
     }
 
     canGoToAuthModule(): boolean {
-        debugger
         if (this.authService.checkAuth()) {
             this.router.navigate(['publications'])
             return false

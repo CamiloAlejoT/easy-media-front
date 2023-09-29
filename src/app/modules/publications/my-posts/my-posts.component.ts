@@ -18,12 +18,12 @@ export class MyPostsComponent implements OnInit {
     this.getMyPost()
   }
 
+  formFields: string[] = ['date'] 
   selectedDate = ""
   myPublications: FilterPubResponse[] = []
 
 
   async getMyPost() {
-
     if (this.selectedDate) {
       let fixedDate = this.selectedDate.split('-')
       fixedDate[1] = `${(Number(fixedDate[1]) - 1)}`
@@ -36,9 +36,9 @@ export class MyPostsComponent implements OnInit {
     } else {
       this.myPublications = await this.publicationsService.getMyPost({ findUser: `${localStorage.getItem('uuid')}` })
     }
-
-
-
-
+  }
+  handleData(data: any) {
+    this.selectedDate = data[0]['value']
+    this.getMyPost()
   }
 }

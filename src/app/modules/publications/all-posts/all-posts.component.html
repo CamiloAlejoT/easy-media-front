@@ -1,2 +1,4 @@
-<app-app-header/>
-<p>all-posts works!</p>
+<app-app-header />
+
+<app-filtet-form [formFields]="formFields" (dataEvent)="dataHandler($event)" />
+<app-fixed-results [myPublications]="publications" />
